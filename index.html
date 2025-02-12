@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <button id="getmethod">Click me for get method data</button>
+        <button id="postmethod">Click me for post method data</button>
+    </div>
+    <script>
+        let container = document.getElementById("container")
+        let getButton = document.getElementById("getmethod");
+        let postButton = document.getElementById("postmethod");
+
+        getButton.addEventListener("click", () => {
+           fetch("http://localhost:3000").then((response) => {return response.json()}).then(
+            (data) => {
+                data.forEach(element => {
+                    let card = document.createElement("div");
+                    card.innerHTML = `${JSON.stringify(element)}`;
+                    container.appendChild(card);
+                });
+            }
+           )
+        })
+
+        postButton.addEventListener("click", () => {
+            fetch("http://localhost:3000", {
+                method : "POST"
+                // headers : {"Content-Type" : "application/json"}
+                // body : JSON.stringify({"name" : "maruthi"})
+            }).then((response) => {return response.json()}).then((data) => {
+                container.innerHTML = `${JSON.stringify(data)}`;
+                
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+analysis, requirement gathering, designing, implemenatation.
+
+for api, we need to consider request, response model.
+
