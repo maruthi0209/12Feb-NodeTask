@@ -14,7 +14,7 @@ let server = http.createServer((req, res) => {
         }).then(
             (data) => {
 console.log("dgdg");
-console.log(data);
+// console.log(data);
 // res.write(JSON.stringify(data));
 res.end(JSON.stringify(data))
 

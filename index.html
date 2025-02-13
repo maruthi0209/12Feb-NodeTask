@@ -10,8 +10,14 @@
         <button id="getmethod">Click me for get method data</button>
         <button id="postmethod">Click me for post method data</button>
     </div>
+    <div id="container1"></div>
+    <div id="container2"></div>
     <script>
         let container = document.getElementById("container")
+        let container1 = document.getElementById("container1");
+        container1.style.display = "none";
+        let container2 = document.getElementById("container2")
+        container2.style.display = "none";
         let getButton = document.getElementById("getmethod");
         let postButton = document.getElementById("postmethod");
 
@@ -21,20 +27,24 @@
                 data.forEach(element => {
                     let card = document.createElement("div");
                     card.innerHTML = `${JSON.stringify(element)}`;
-                    container.appendChild(card);
+                    container1.appendChild(card);
+                    
                 });
+                container1.style.display = "block";
+                container2.style.display = "none";
             }
            )
         })
 
         postButton.addEventListener("click", () => {
             fetch("http://localhost:3000", {
-                method : "POST"
-                // headers : {"Content-Type" : "application/json"}
+                method : "POST",
+                
                 // body : JSON.stringify({"name" : "maruthi"})
             }).then((response) => {return response.json()}).then((data) => {
-                container.innerHTML = `${JSON.stringify(data)}`;
-                
+                container2.innerHTML = `${JSON.stringify(data)}`;
+                container1.style.display = "none";
+                container2.style.display = "block";
             })
         })
     </script>
